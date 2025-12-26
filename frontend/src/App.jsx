@@ -1,14 +1,15 @@
-import React from 'react'
-import Navbar from './components/Navbar'
+// import Navbar from './components/Navbar'
+import Home from './pages/Home'
+import { Route, Routes } from 'react-router-dom'
 
 const App = () => {
   
-  // const isOwnerPath = useLocation().pathname.includes("owner");
-  
   return (
     <div>
-      {/* {!isOwnerPath && <Navbar />} */}
-      <Navbar />
+      {/* <Navbar /> */}
+      <Routes>
+        <Route path='/' element={<Home/>} />
+      </Routes>
     </div>
   )
 }
