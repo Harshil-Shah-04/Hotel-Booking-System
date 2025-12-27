@@ -192,8 +192,6 @@ export const roomsDummyData = [
     }
 ]
 
-
-
 // User Bookings Dummy Data
 export const userBookingsDummyData = [
     {
