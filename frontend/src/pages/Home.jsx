@@ -1,11 +1,11 @@
 import Hero from '../components/Hero'
-import Featured from '../components/Featured'
+import FeaturedDestinations from '../components/FeaturedDestinations'
 
 const Home = () => {
   return (
     <div>
       <Hero></Hero>
-      <Featured></Featured>
+      <FeaturedDestinations></FeaturedDestinations>
     </div>
   )
 }
