@@ -3,15 +3,15 @@ import Home from './pages/Home'
 import { Route, Routes } from 'react-router-dom'
 
 const App = () => {
-  
-  return (
+    
+    return (
     <div>
-      <Navbar />
-      <Routes>
+        <Navbar />
+        <Routes>
         <Route path='/' element={<Home/>} />
-      </Routes>
+        </Routes>
     </div>
-  )
+    )
 }
 
 export default App
