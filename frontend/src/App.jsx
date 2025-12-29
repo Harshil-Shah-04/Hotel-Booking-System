@@ -6,13 +6,17 @@ import { Route, Routes } from 'react-router-dom'
 const App = () => {
     
     return (
-        <div>
+        <div className="min-h-screen flex flex-col">
             <Navbar />
-            <div>
-                <Routes>
-                    <Route path='/' element={<Home/>} />
-                </Routes>
-            </div>
+            
+            <main className="flex-grow">
+                <div>
+                    <Routes>
+                        <Route path='/' element={<Home/>} />
+                    </Routes>
+                </div>
+            </main>
+            
             <Footer />
         </div>
     )

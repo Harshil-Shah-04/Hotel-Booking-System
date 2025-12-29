@@ -17,8 +17,6 @@ const Navbar = () => {
         { name: 'About', path: '/' },
     ];
 
-    const ref = React.useRef(null)   // important line
-
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     
