@@ -1,9 +1,9 @@
 import HotelCard from './HotelCard'
-import { roomsDummyData } from '../assets/assets'
 import Title from './Title'
+import { roomsDummyData } from '../assets/assets'
 import { useNavigate } from 'react-router-dom'
 
-const Featured = () => {
+const FeaturedDestinations = () => {
     
     const navigate = useNavigate()
     
@@ -25,4 +25,4 @@ const Featured = () => {
     )
 }
 
-export default Featured
+export default FeaturedDestinations

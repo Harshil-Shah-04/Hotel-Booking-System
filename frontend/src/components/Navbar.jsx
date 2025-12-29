@@ -79,8 +79,6 @@ const Navbar = () => {
             </div>
 
             {/* Mobile Menu Button */}
-            
-            
             <div className="flex items-center gap-3 md:hidden">
                 {user && (<UserButton>
                     <UserButton.MenuItems>
