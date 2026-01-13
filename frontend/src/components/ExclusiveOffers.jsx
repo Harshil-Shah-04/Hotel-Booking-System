@@ -1,4 +1,3 @@
-import React from 'react'
 import { assets, exclusiveOffers } from '../assets/assets'
 import Title from './Title'
 
