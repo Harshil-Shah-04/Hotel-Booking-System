@@ -1,7 +1,12 @@
+import { useState } from "react"
 import { assets, facilityIcons, roomsDummyData } from "../assets/assets"
+import { useNavigate } from "react-router-dom"
 import StarRating from "../components/StarRating"
 
 const Rooms = () => {
+    
+    const navigate = useNavigate()
+    const [openFilters, setOpenFilters] = useState(false)
     
     return (
         <div className="flex flex-col-reverse lg:flex-row items-start justify-between pt-28 md:pt-35 px-4 md:px-16 lg:px-24 xl:px-32">
@@ -45,7 +50,7 @@ const Rooms = () => {
             </div>
                 
             {/* Filters */}
-            {/* <div className = "bg-white w-80 border border-gray-300 text-gray-600 max-lg:mb-8 min-lg:mt-16">
+            <div className = "bg-white w-80 border border-gray-300 text-gray-600 max-lg:mb-8 min-lg:mt-16">
                 <div className = {`flex items-center justify-between px-5 py-2.5 min-lg:border-b border-gray-300 ${openFilters && "border-b"}`}>
                     <p className = "text-base font-medium text-gray-800">FILTERS</p>
                     <div className = "text-xs cursor-pointer">
@@ -59,7 +64,7 @@ const Rooms = () => {
                         <p className = "font-medium text-gray-800 pb-2">Popular filters</p>
                     </div>
                 </div>
-            </div> */}
+            </div>
         </div>
     )
 }
