@@ -2,14 +2,17 @@
 @import "tailwindcss";
 
 @theme {
-    --colour-primary: #2563EB;
-    --colour-secondary: #FBBF24;
+    --color-primary: #2563EB;
+    --color-secondary: #FBBF24;
+
+    --font-outfit: 'Outfit', system-ui, sans-serif;
+    --font-playfair: 'Playfair', serif;
 }
 
-*{
-    font-family: Outfit;
+body {
+    font-family: var(--font-outfit);
 }
 
 .font-playfair {
-    font-family: Playfair !important;
+    font-family: var(--font-playfair);
 }
