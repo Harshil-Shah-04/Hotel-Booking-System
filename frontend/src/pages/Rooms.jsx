@@ -3,10 +3,10 @@ import { assets, facilityIcons, roomsDummyData } from "../assets/assets"
 import { useNavigate } from "react-router-dom"
 import StarRating from "../components/StarRating"
 
-const CheckBox = ({label, selected = false, onChange = () => {}}) => {
+const CheckBox = ({label, name, selected = false, onChange = () => {}}) => {
     return (
         <label className="flex gap-3 items-center cursor-pointer mt-2 text-sm">
-            <input type="checkbox" checked={selected} onChange = {(e) => onChange(e.target.checked, label)}/>
+            <input type="checkbox" id={name} checked={selected} onChange = {(e) => onChange(e.target.checked, label)}/>
             <span className="font-light select-none">{label}</span>
         </label>
     )
@@ -101,13 +101,13 @@ const Rooms = () => {
                     <div className="px-5 pt-5">
                         <p className="font-medium text-gray-800 pb-2">Popular filters</p>
                         {roomTypes.map((room, index) => ( 
-                            <CheckBox key = {index} label = {room}/>
+                            <CheckBox key = {index} label = {room} name = {`popularFiltersCheckbox${index}`}/>
                         ))}
                     </div>
                     <div className="px-5 pt-5">
                         <p className="font-medium text-gray-800 pb-2">Price Range</p>
                         {priceRanges.map((range, index) => (
-                            <CheckBox key = {index} label = {`$ ${range}`}/>
+                            <CheckBox key = {index} label = {`$ ${range}`} name = {`priceRangeCheckbox${index}`}/>
                         ))}
                     </div>
                     <div className="px-5 pt-5 pb-7">
