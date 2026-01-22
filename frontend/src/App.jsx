@@ -36,7 +36,7 @@ const App = () => {
                 </div>
             </main>
             
-            <Footer/>
+            {!isOwnerPath && <Footer/>}
         </div>
     )
 }
