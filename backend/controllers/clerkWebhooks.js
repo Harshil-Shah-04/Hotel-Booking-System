@@ -3,14 +3,15 @@ import User from "../models/User.js"
 
 const clerkWebhooks = async (req, res) => {
     try {
+        
         // Create a Svix instance with Clerk webhook secret
         const webhook = new Webhook(process.env.CLERK_WEBHOOK_SECRET)
         
         // Requesting Headers
         const headers = {
-            "svix-id": req.header["svix-id"],
-            "svix-timestamp": req.header["svix-timestamp"],
-            "svix-signature": req.header["svix-signature"],
+            "svix-id": req.headers["svix-id"],
+            "svix-timestamp": req.headers["svix-timestamp"],
+            "svix-signature": req.headers["svix-signature"]
         }
         
         // Verifying Headers
@@ -31,21 +32,21 @@ const clerkWebhooks = async (req, res) => {
             
             case "user.created": {
                 await User.create(userData)
-                break;
+                break
             }
             
             case "user.updated": {
                 await User.findByIdAndUpdate(data.id, userData)
-                break;
+                break
             }
             
             case "user.deleted": {
                 await User.findByIdAndDelete(data.id)
-                break;
+                break
             }
             
             default:
-                break;
+                break
         }
         
         res.json({success: true, message: "Webhook Recieved"})
