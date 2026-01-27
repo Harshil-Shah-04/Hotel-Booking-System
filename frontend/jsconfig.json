@@ -1,8 +1,6 @@
-// {
-//   "compilerOptions": {
-//     "moduleResolution": "classic"
-//   },
-//   "include": ["**/*"]
-// }
-
-{}
+{
+    // "compilerOptions": {
+    //     "moduleResolution": "classic"
+    // },
+    // "include": ["**/*"]
+}

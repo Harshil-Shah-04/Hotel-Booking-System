@@ -1,9 +1,6 @@
-// {
-//   "compilerOptions": {
-//     "moduleResolution": "node",
-//     "checkJs": false
-//   },
-//   "include": ["**/*.js"]
-// }
-
-{}
+{
+    // "compilerOptions": {
+    //     "moduleResolution": "node"
+    // },
+    // "include": ["**/*.js"]
+}
