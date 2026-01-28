@@ -17,7 +17,12 @@ export const protect = async (req, res, next) => {
         let user = await User.findById(userId);
 
         if (!user) {
-            user = await User.create({ _id: userId });
+            user = await User.create({
+                _id: userId,
+                email: req.auth.sessionClaims?.email,
+                username: req.auth.sessionClaims?.username,
+                image: req.auth.sessionClaims?.picture,
+            });
         }
 
         req.user = user;
