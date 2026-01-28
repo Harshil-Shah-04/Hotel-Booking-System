@@ -10,33 +10,37 @@ import Layout from './pages/hotel-owner/Layout'
 import Dashboard from './pages/hotel-owner/Dashboard'
 import AddRoom from './pages/hotel-owner/AddRoom'
 import ListRooms from './pages/hotel-owner/ListRooms'
+import { Toaster } from 'react-hot-toast'
+import { useAppContext } from './context/AppContext'
 
 const App = () => {
-    
+
     const isOwnerPath = useLocation().pathname.includes("/owner");
-    
+    const { showHotelRegistration } = useAppContext()
+
     return (
         <div className="min-h-screen flex flex-col">
-            {!isOwnerPath && <Navbar/>}
-            {false && <HotelRegistration/>}
-            
+            <Toaster />
+            {!isOwnerPath && <Navbar />}
+            {showHotelRegistration && <HotelRegistration />}
+
             <main className="flex-grow">
                 <div>
                     <Routes>
-                        <Route path='/' element={<Home/>} />
-                        <Route path='/rooms' element={<Rooms/>} />
-                        <Route path='/rooms/:id' element={<RoomDetails/>} />
-                        <Route path='/my-bookings' element={<Bookings/>} />
-                        <Route path='/owner' element={<Layout/>}>
-                            <Route index element={<Dashboard/>}/>
-                            <Route path='add-room' element={<AddRoom/>}/>
-                            <Route path='list-rooms' element={<ListRooms/>}/>
+                        <Route path='/' element={<Home />} />
+                        <Route path='/rooms' element={<Rooms />} />
+                        <Route path='/rooms/:id' element={<RoomDetails />} />
+                        <Route path='/my-bookings' element={<Bookings />} />
+                        <Route path='/owner' element={<Layout />}>
+                            <Route index element={<Dashboard />} />
+                            <Route path='add-room' element={<AddRoom />} />
+                            <Route path='list-rooms' element={<ListRooms />} />
                         </Route>
                     </Routes>
                 </div>
             </main>
-            
-            {!isOwnerPath && <Footer/>}
+
+            {!isOwnerPath && <Footer />}
         </div>
     )
 }
