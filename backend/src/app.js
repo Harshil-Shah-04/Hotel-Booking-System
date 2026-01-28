@@ -13,7 +13,16 @@ connectCloudinary()
 
 const app = express()
 
-app.use(cors())
+app.use(cors({
+    origin: [
+        "http://localhost:5173",
+        "https://legendary-palm-tree-g6qr4995q9wfv47r-5173.app.github.dev"
+    ],
+    credentials: true,
+    allowedHeaders: ["Content-Type", "Authorization"],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
+}));
+
 app.use(express.json())
 
 app.use(clerkMiddleware())
