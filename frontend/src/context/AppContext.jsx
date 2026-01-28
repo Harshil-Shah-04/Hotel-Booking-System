@@ -21,6 +21,7 @@ export const AppProvider = ({ children }) => {
 
     const fetchUser = async () => {
         try {
+            axios.defaults.baseURL = "https://hotel-booking-backend-one-lime.vercel.app";
             const { data } = await axios.get('/api/user', { headers: { Authorization: `Bearer ${await getToken()}` } })
             if (data.success) {
                 setIsOwner(data.role === "owner")
