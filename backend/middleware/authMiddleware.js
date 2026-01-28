@@ -14,17 +14,16 @@ export const protect = async (req, res, next) => {
 
         await connectDB();
 
-        const user = await User.findById(userId);
+        let user = await User.findById(userId);
 
         if (!user) {
-            return res.status(401).json({
-                success: false,
-                message: "User not found",
-            });
+            user = await User.create({ _id: userId });
         }
 
         req.user = user;
         next();
+
+
     } catch (error) {
         console.error("Protect middleware error:", error);
         res.status(401).json({
