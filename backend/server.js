@@ -10,10 +10,21 @@ import hotelRouter from "./routes/hotelRoutes.js"
 import roomRouter from "./routes/roomRoutes.js"
 import bookingRouter from "./routes/bookingRoutes.js"
 
-connectDB()
+
+
+
 connectCloudinary()
 
 const app = express()
+
+app.use(async (req, res, next) => {
+  try {
+    await connectDB()
+    next()
+  } catch (err) {
+    res.status(500).json({ success: false, message: "Database connection failed" })
+  }
+})
 
 app.use(cors())
 app.use(express.json())
@@ -30,4 +41,8 @@ app.use('/api/bookings', bookingRouter)
 
 const PORT = process.env.PORT || 3000
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
+}
+
+export default app

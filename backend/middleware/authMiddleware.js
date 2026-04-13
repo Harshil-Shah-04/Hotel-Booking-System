@@ -1,4 +1,4 @@
-import User from "../models/User.js"
+// import User from "../models/User.js"
 
 // Middleware to check if user is authenticated
 export const protect = async (req, res, next) => {
@@ -8,8 +8,8 @@ export const protect = async (req, res, next) => {
     if (!userId) {
         res.json({ success: false, message: "Not Authenticated" })
     } else {
-        const user = await User.findById(userId)
-        req.user = user
+        req.user = await User.findById(userId) // ← must be a Mongoose doc for .save() to work
+        if (!req.user) return res.status(401).json({ success: false, message: "User not found" })
         next()
     }
 }
