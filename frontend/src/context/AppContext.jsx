@@ -8,20 +8,34 @@ axios.defaults.baseURL = import.meta.env.VITE_BACKEND_URL
 
 const AppContext = createContext()
 
-export const AppProvider = ({ children }) => {
+export const AppProvider = ({children}) => {
 
     const currency = import.meta.env.VITE_CURRENCY || "$"
     const navigate = useNavigate()
-    const { user } = useUser()
-    const { getToken } = useAuth()
+    const {user} = useUser()
+    const {getToken} = useAuth()
 
     const [isOwner, setIsOwner] = useState(false)
     const [showHotelRegistration, setShowHotelRegistration] = useState(false)
     const [searchedCities, setSearchedCities] = useState([])
+    const [rooms, setRooms] = useState([])
+    
+    const fetchRooms = async () => {
+        try {
+            const {data} = await axios.get('/api/rooms')
+            if (data.success) {
+                setRooms(data.rooms)
+            } else {
+                toast.error(data.message)
+            }
+        } catch (error) {
+            toast.error(error.message)
+        }
+    }
 
     const fetchUser = async () => {
         try {
-            const { data } = await axios.get('/api/user', { headers: { Authorization: `Bearer ${await getToken()}` } })
+            const {data} = await axios.get('/api/user', {headers: {Authorization: `Bearer ${await getToken()}`}})
             if (data.success) {
                 setIsOwner(data.role === "owner")
                 setSearchedCities(data.recentSearchedCities)
@@ -40,9 +54,13 @@ export const AppProvider = ({ children }) => {
             fetchUser()
         }
     }, [user])
+    
+    useEffect(() => {
+        fetchRooms()
+    }, [])
 
     const value = {
-        axios, currency, navigate, user, getToken, isOwner, setIsOwner, showHotelRegistration, setShowHotelRegistration, searchedCities, setSearchedCities
+        axios, currency, navigate, user, getToken, isOwner, setIsOwner, showHotelRegistration, setShowHotelRegistration, searchedCities, setSearchedCities, rooms, setRooms
     }
 
     return (

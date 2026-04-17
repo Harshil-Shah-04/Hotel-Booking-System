@@ -15,8 +15,8 @@ import { useAppContext } from './context/AppContext'
 
 const App = () => {
 
-    const isOwnerPath = useLocation().pathname.includes("/owner");
-    const { showHotelRegistration } = useAppContext()
+    const isOwnerPath = useLocation().pathname.includes("/owner")
+    const {showHotelRegistration} = useAppContext()
 
     return (
         <div className="min-h-screen flex flex-col">

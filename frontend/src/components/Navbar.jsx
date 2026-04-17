@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { assets } from '../assets/assets';
-import { useClerk, UserButton } from '@clerk/clerk-react';
-import { useAppContext } from '../context/AppContext';
+import React, { useEffect, useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
+import { assets } from '../assets/assets'
+import { useClerk, UserButton } from '@clerk/clerk-react'
+import { useAppContext } from '../context/AppContext'
 
 const BookIcon = () => (
     <svg className="w-4 h-4 text-gray-700" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" >
@@ -12,37 +12,37 @@ const BookIcon = () => (
 
 const Navbar = () => {
     const navLinks = [
-        { name: 'Home', path: '/' },
-        { name: 'Hotels', path: '/rooms' },
-        { name: 'Experience', path: '/' },
-        { name: 'About', path: '/' },
-    ];
+        {name: 'Home', path: '/'},
+        {name: 'Hotels', path: '/rooms'},
+        {name: 'Experience', path: '/'},
+        {name: 'About', path: '/'},
+    ]
 
-    const [isScrolled, setIsScrolled] = useState(false);
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false)
+    const [isMenuOpen, setIsMenuOpen] = useState(false)
 
-    const { openSignIn } = useClerk()
+    const {openSignIn} = useClerk()
     const location = useLocation()
 
-    const { user, navigate, isOwner, setShowHotelRegistration } = useAppContext()
+    const {user, navigate, isOwner, setShowHotelRegistration } = useAppContext()
 
     useEffect(() => {
 
         const handleScroll = () => {
             if (location.pathname === "/") {
-                setIsScrolled(window.scrollY > 50);
+                setIsScrolled(window.scrollY > 50)
             }
-        };
-
-        if (location.pathname !== "/") {
-            setIsScrolled(true);
-        } else {
-            setIsScrolled(window.scrollY > 50);
         }
 
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, [location.pathname]);
+        if (location.pathname !== "/") {
+            setIsScrolled(true)
+        } else {
+            setIsScrolled(window.scrollY > 50)
+        }
+
+        window.addEventListener("scroll", handleScroll)
+        return () => window.removeEventListener("scroll", handleScroll)
+    }, [location.pathname])
 
 
     return (
@@ -115,7 +115,7 @@ const Navbar = () => {
                 </button>}
             </div>
         </nav>
-    );
+    )
 }
 
-export default Navbar;
+export default Navbar

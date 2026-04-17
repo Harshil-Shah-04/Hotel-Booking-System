@@ -35,9 +35,9 @@ const AddRoom = () => {
         // Check if all inputs are filled
         if (!inputs.roomType || !inputs.pricePerNight || !inputs.amenities || !Object.values(images).some(image => image)) {
             toast.error("Please fill in all the details")
-            return;
+            return
         }
-        setLoading(true);
+        setLoading(true)
         try {
             const formData = new FormData()
             formData.append('roomType', inputs.roomType)
@@ -51,7 +51,7 @@ const AddRoom = () => {
                 images[key] && formData.append('images', images[key])
             })
             
-            const { data } = await axios.post('/api/rooms/', formData, {headers: {Authorization: `Bearer ${await getToken()}`}})
+            const {data} = await axios.post('/api/rooms/', formData, {headers: {Authorization: `Bearer ${await getToken()}`}})
             
             if (data.success) {
                 toast.success(data.message)
@@ -73,7 +73,7 @@ const AddRoom = () => {
         } catch (error) {
             toast.error(error.message)
         } finally {
-            setLoading(false);
+            setLoading(false)
         }
     }
     

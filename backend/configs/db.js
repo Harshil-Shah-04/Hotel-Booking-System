@@ -1,7 +1,7 @@
 // configs/db.js
 import mongoose from 'mongoose'
 
-let cached = global._mongooseCache || (global._mongooseCache = { conn: null, promise: null })
+let cached = global._mongooseCache || (global._mongooseCache = {conn: null, promise: null})
 
 const connectDB = async () => {
   if (cached.conn) return cached.conn

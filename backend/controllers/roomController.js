@@ -70,7 +70,7 @@ export const getOwnerRooms = async (req, res) => {
 // API to toggle availability of a room
 export const toggleRoomAvailability = async (req, res) => {
     try {
-        const { roomId } = req.body
+        const {roomId} = req.body
         const roomData = await Room.findById(roomId)
         roomData.isAvailable = !roomData.isAvailable
         await roomData.save()
