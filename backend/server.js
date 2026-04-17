@@ -10,9 +10,6 @@ import hotelRouter from "./routes/hotelRoutes.js"
 import roomRouter from "./routes/roomRoutes.js"
 import bookingRouter from "./routes/bookingRoutes.js"
 
-
-
-
 connectCloudinary()
 
 const app = express()
@@ -28,7 +25,6 @@ app.use(async (req, res, next) => {
 
 app.use(cors())
 app.use(express.json())
-
 app.use(clerkMiddleware())
 app.use("/api/clerk", clerkWebhooks)
 
