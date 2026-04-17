@@ -7,7 +7,7 @@ export const protect = async (req, res, next) => {
     if (!userId) {
         res.json({ success: false, message: "Not Authenticated" })
     } else {
-        req.user = await User.findById(userId) // ← must be a Mongoose doc for .save() to work
+        req.user = await User.findById(userId)
         if (!req.user) return res.status(401).json({ success: false, message: "User not found" })
         next()
     }

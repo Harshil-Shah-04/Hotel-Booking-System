@@ -11,7 +11,7 @@ const connectDB = async () => {
       maxPoolSize: 10,
       serverSelectionTimeoutMS: 5000,
       socketTimeoutMS: 45000,
-      bufferCommands: false, // fail loudly instead of silently queuing
+      bufferCommands: false,
     })
   }
 

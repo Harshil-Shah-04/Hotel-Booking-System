@@ -1,3 +1,4 @@
+import connectCloudinary from "../configs/cloudinary.js"
 import Hotel from "../models/Hotel.js"
 import Room from "../models/Room.js"
 import { v2 as cloudinary } from "cloudinary"
@@ -5,6 +6,8 @@ import { v2 as cloudinary } from "cloudinary"
 // API to create new room for a hotel
 export const createRoom = async (req, res) => {
     try {
+        await connectCloudinary()
+        
         const {roomType, pricePerNight, amenities} = req.body
         const hotel = await Hotel.findOne({owner: req.auth.userId})
         
