@@ -9,27 +9,28 @@ import userRouter from "./routes/userRoutes.js"
 import hotelRouter from "./routes/hotelRoutes.js"
 import roomRouter from "./routes/roomRoutes.js"
 import bookingRouter from "./routes/bookingRoutes.js"
-import { stripeWebhook } from "./controllers/stripeWebhook.js"
+import { stripeWebhooks } from "./controllers/stripeWebhooks.js"
 
 connectCloudinary()
 
 const app = express()
 
 app.use(async (req, res, next) => {
-  try {
-    await connectDB()
-    next()
-  } catch (err) {
-    res.status(500).json({success: false, message: "Database connection failed"})
-  }
+    try {
+        await connectDB()
+        next()
+    } catch (err) {
+        res.status(500).json({success: false, message: "Database connection failed"})
+    }
 })
 
 app.use(cors())
+app.post('/api/stripe', express.raw({type: "application/json"}), stripeWebhooks)
+
 app.use(express.json())
 app.use(clerkMiddleware())
 app.use("/api/clerk", clerkWebhooks)
 
-app.post('/api/stripe', express.raw({type: "application/json"}), stripeWebhook)
 app.get('/', (req, res) => res.send("API is working"))
 
 app.use('/api/user', userRouter)
@@ -40,7 +41,7 @@ app.use('/api/bookings', bookingRouter)
 const PORT = process.env.PORT || 3000
 
 if (process.env.NODE_ENV !== 'production') {
-  app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
 }
 
 export default app
