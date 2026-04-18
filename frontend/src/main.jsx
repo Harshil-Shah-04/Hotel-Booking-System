@@ -1,7 +1,7 @@
 import './index.css'
 import App from './App.jsx'
 import { createRoot } from 'react-dom/client'
-import { HashRouter } from 'react-router-dom'
+import { BrowserRouter, HashRouter } from 'react-router-dom'
 import { ClerkProvider } from '@clerk/clerk-react'
 import { AppProvider } from './context/AppContext'
 
@@ -13,10 +13,10 @@ if (!PUBLISHABLE_KEY) {
 
 createRoot(document.getElementById('root')).render(
     <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
-        <HashRouter>
+        <BrowserRouter>
             <AppProvider>
                 <App />
             </AppProvider>
-        </HashRouter>
+        </BrowserRouter>
     </ClerkProvider>
 )
